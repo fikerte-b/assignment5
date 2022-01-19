@@ -6,6 +6,10 @@ public class RemoveIteratorMain {
      names.add("Rahel");
      names.add("Ruth");
      names.add("Meklit");
+     names.add("Yared");
+     names.add("kelebet");
+
+        System.out.println(names);
      names.removeAllof("kelebet");
         System.out.println();
 

@@ -19,7 +19,38 @@ public class RemoveIterator<E> implements Iterable<E>{
             this.next = nodeRef;
         }
     }
+    private void addFirst(E item){
+        Node<E> temp = new Node<>(item, head);
+        head = temp;
+        size++;
+    }
 
+    private void addAfter(E item, Node<E> node){
+        Node<E> temp = new Node<>(item, node.next);
+        node.next = temp;
+        size++;
+    }
+    private Node<E> getNode(int index){
+        Node<E> node = head;
+        for (int i = 0; i < index && node != null; i++) {
+            node = node.next;
+        }
+        return node;
+    }
+
+    public void add(int index, E item){
+        if(index < 0 || index > size)
+            throw new ArrayIndexOutOfBoundsException();
+
+        if(index ==0){
+            addFirst(item);
+        }
+        else{
+            Node<E> node = getNode(index - 1);
+            addAfter(item, node);
+        }
+
+    }
     public void add(E item){
         add(size,item);
     }
@@ -106,4 +137,18 @@ public class RemoveIterator<E> implements Iterable<E>{
                 }
             }
         }
+
+    public String toString() {
+        Node<E> current = head;
+        StringBuilder result = new StringBuilder();
+        while (current != null) {
+            result.append(current.data);
+            if (current.next != null) {
+                result.append(" ==> ");
+            }
+            current = current.next;
+        }
+        return result.toString();
+    }
+
 }
